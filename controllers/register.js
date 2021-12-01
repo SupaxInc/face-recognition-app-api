@@ -1,6 +1,12 @@
 const handleRegister = (knex, bcrypt) => (req, res) => {
     // The request sends a JSON that contains email, name, password properties
     const {name, email, password} = req.body;
+
+    // If any of the fields are empty
+    if(!email || !name || !password) {
+        // Returning to end execution within the function or else it will still continue the transaction with knex.
+        return res.status(400).json("Incorrect form submission!");
+    }
     const hash = bcrypt.hashSync(password);
 
     // Add the new user to the database (db now exists)

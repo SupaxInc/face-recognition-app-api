@@ -54,6 +54,11 @@ app.get('/profile/:id', profile.handleProfileGetID(knex));
 app.put('/image', image.handleImage(knex));
 // app.put('/image', (req, res) => { image.handleImage(req, res, knex)});
 
+/*
+    Image Post Endpoint
+*/
+app.post('/imageurl', image.handleApiCall());
+
 
 app.listen(3000, () => {
     console.log("Working on port 3000!");

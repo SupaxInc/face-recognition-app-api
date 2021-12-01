@@ -1,13 +1,20 @@
 const handleSignIn = (knex, bcrypt) => (req,res) => {
+    const { email, password } = req.body;
+
+    // Validation email and password input
+    if(!email || !password) {
+        return res.status(400).send("Incorrect login attempted!");
+    }
+
     // Check if the email and password matches up in our database (db now exists)
     knex.select('email', 'hash')
         .from('login')
-        .where('email', '=', req.body.email)
+        .where('email', '=', email)
         .then(data => {
-            const passIsValid = bcrypt.compareSync(req.body.password, data[0].hash);
+            const passIsValid = bcrypt.compareSync(password, data[0].hash);
             if(passIsValid) {
                 return knex.select('*').from('users')
-                    .where('email', '=', req.body.email)
+                    .where('email', '=', email)
                     .then(user => {
                         res.json(user[0]);
                     })
