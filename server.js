@@ -60,6 +60,6 @@ app.put('/image', image.handleImage(knex));
 app.post('/imageurl', image.handleApiCall());
 
 
-app.listen(3000, () => {
-    console.log("Working on port 3000!");
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`Working on port ${process.env.PORT}`);
 });

@@ -1,5 +1,5 @@
 const handleRegister = (knex, bcrypt) => (req, res) => {
-    // The request sends a JSON that contains email, name, password properties
+    // The POST request sends a JSON that contains email, name, password properties
     const {name, email, password} = req.body;
 
     // If any of the fields are empty
