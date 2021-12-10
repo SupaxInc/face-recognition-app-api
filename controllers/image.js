@@ -2,7 +2,8 @@ const Clarifai = require('clarifai');
 
 // Using the OLD method of using the Clarifai API
 const app = new Clarifai.App({
-    apiKey: 'e9904850971349f890e99bc351da5bc0'
+    // The API key is setup in our config vars in Heroku
+    apiKey: process.env.API_CLARIFAI
 });
 
 
