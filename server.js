@@ -5,12 +5,16 @@ const knex = require('knex')({
     client: 'pg', // client will be postgres
 
     // To find the connection info for postgres run the command '\conninfo'
+    // connection: {
+    //   host : '127.0.0.1',
+    //   port : 5432,
+    //   user : 'postgres',
+    //   password : 'test',
+    //   database : 'smartbrain'
+    // }
     connection: {
-      host : '127.0.0.1',
-      port : 5432,
-      user : 'postgres',
-      password : 'test',
-      database : 'smartbrain'
+        host: process.env.DATABASE_URL,
+        ssl: true
     }
 });
 
